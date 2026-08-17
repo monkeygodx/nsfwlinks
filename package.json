@@ -1,0 +1,15 @@
+{
+  "name": "mg-directory",
+  "version": "1.0.0",
+  "description": "Network directory — four platforms, one page",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
