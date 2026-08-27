@@ -6,341 +6,254 @@
 <title>nsfws.link</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=Archivo:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0b0b0b;
-    --surface: #141414;
-    --border: #232323;
-    --border-hover: #3a3a3a;
-    --text-primary: #eeebe6;
-    --text-secondary: #5a5a5a;
-    --text-dim: #2e2e2e;
-    --accent: #eeebe6;
-    --num: #2a2a2a;
-    --tag-bg: #1c1c1c;
-    --tag-text: #4a4a4a;
-    --coming-opacity: 0.38;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) {
-      --bg: #f4f2ee;
-      --surface: #ffffff;
-      --border: #dedad4;
-      --border-hover: #b8b3ab;
-      --text-primary: #111111;
-      --text-secondary: #888880;
-      --text-dim: #d0cdc8;
-      --accent: #111111;
-      --num: #d8d4ce;
-      --tag-bg: #eceae6;
-      --tag-text: #999990;
-      --coming-opacity: 0.42;
-    }
-  }
-
-  :root[data-theme="dark"] {
-    --bg: #0b0b0b;
-    --surface: #141414;
-    --border: #232323;
-    --border-hover: #3a3a3a;
-    --text-primary: #eeebe6;
-    --text-secondary: #5a5a5a;
-    --text-dim: #2e2e2e;
-    --accent: #eeebe6;
-    --num: #2a2a2a;
-    --tag-bg: #1c1c1c;
-    --tag-text: #4a4a4a;
-    --coming-opacity: 0.38;
-  }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: var(--bg);
-    color: var(--text-primary);
-    font-family: 'Archivo', sans-serif;
+    background: #111;
+    color: #fff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
   }
 
-  /* Header */
-  header {
-    border-bottom: 1px solid var(--border);
-    padding: 2.5rem clamp(1.5rem, 6vw, 5rem);
-    display: flex;
-    align-items: baseline;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .site-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.4rem, 6vw, 4.2rem);
-    letter-spacing: 0.03em;
-    line-height: 1;
-    color: var(--text-primary);
-  }
-
-  .site-meta {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.68rem;
-    color: var(--text-secondary);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding-top: 0.2rem;
-  }
-
-  /* Main */
-  main {
-    flex: 1;
-    padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 6vw, 5rem);
-    max-width: 960px;
-  }
-
-  .dir-label {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
+  /* NAV */
+  nav {
+    padding: 20px 32px;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 12px;
+  }
+  .nav-logo {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  .nav-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #444;
+    flex-shrink: 0;
+  }
+  .nav-count {
+    font-size: 12px;
+    color: #555;
+    font-weight: 500;
   }
 
-  .dir-label::after {
-    content: '';
-    flex: 1;
-    max-width: 60px;
-    height: 1px;
-    background: var(--border);
-    display: inline-block;
-  }
-
-  /* Entry list */
-  .entries {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border-top: 1px solid var(--border);
-  }
-
-  .entry {
+  /* GRID */
+  .grid {
+    padding: 8px 28px 60px;
     display: grid;
-    grid-template-columns: 3.5rem 1fr auto;
-    align-items: center;
-    gap: 0 1.5rem;
-    padding: 1.6rem 0;
-    border-bottom: 1px solid var(--border);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+  }
+
+  @media (max-width: 760px) {
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 8px 16px 48px; }
+    nav { padding: 16px 16px; }
+  }
+  @media (max-width: 480px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+
+  /* CARD */
+  .card {
+    display: block;
     text-decoration: none;
     color: inherit;
-    transition: background 0.15s ease;
     cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1a1a1a;
+    transition: transform .18s ease, opacity .18s ease;
     position: relative;
   }
+  .card:not(.coming):hover { transform: translateY(-3px); }
+  .card.coming { opacity: .45; cursor: default; pointer-events: none; }
 
-  .entry:not(.coming-soon):hover {
-    background: var(--surface);
-    margin: 0 -1.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+  /* THUMBNAIL */
+  .thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    position: relative;
+    overflow: hidden;
+    background: #1c1c1c;
+  }
+  .thumb-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* CSS gradient fallback for each site */
+  .thumb-mg-fun {
+    background: linear-gradient(145deg, #1a0a2e 0%, #2d1465 40%, #1a0a2e 100%);
+  }
+  .thumb-mg-us {
+    background: linear-gradient(145deg, #0d0d1f 0%, #1e1060 40%, #0d0d1f 100%);
+  }
+  .thumb-jabigod {
+    background: linear-gradient(145deg, #060f0a 0%, #0a2416 40%, #06100a 100%);
+  }
+  .thumb-latina {
+    background: linear-gradient(145deg, #1a0808 0%, #4a1020 40%, #1a0808 100%);
+  }
+  .thumb-blonde {
+    background: linear-gradient(145deg, #111 0%, #1c1c1c 100%);
   }
 
-  .entry.coming-soon {
-    opacity: var(--coming-opacity);
-    cursor: default;
-    pointer-events: none;
-  }
-
-  .entry-num {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--num);
-    letter-spacing: 0.04em;
-    font-weight: 600;
-    padding-top: 0.1rem;
-  }
-
-  .entry-body {
+  /* site brand centered in thumb */
+  .thumb-brand {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .entry-domain {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: clamp(1rem, 2.4vw, 1.22rem);
-    font-weight: 600;
-    color: var(--text-primary);
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-  }
-
-  .entry-desc {
-    font-size: 0.82rem;
-    color: var(--text-secondary);
-    font-weight: 400;
-    line-height: 1.4;
-    letter-spacing: 0.01em;
-  }
-
-  .entry-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.5rem;
-  }
-
-  .entry-arrow {
-    font-size: 1.1rem;
-    color: var(--text-dim);
-    transition: color 0.15s, transform 0.15s;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .entry:not(.coming-soon):hover .entry-arrow {
-    color: var(--text-primary);
-    transform: translateX(3px);
-  }
-
-  .tag {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.58rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.25rem 0.55rem;
-    background: var(--tag-bg);
-    color: var(--tag-text);
-    border-radius: 2px;
-    white-space: nowrap;
-  }
-
-  .tag.live {
-    color: var(--text-secondary);
-  }
-
-  /* Footer */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 1.5rem clamp(1.5rem, 6vw, 5rem);
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    justify-content: center;
+    gap: 6px;
+  }
+  .thumb-brand-name {
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    font-weight: 800;
+    letter-spacing: .02em;
+    text-align: center;
+    line-height: 1;
+  }
+  .thumb-brand-domain {
+    font-size: clamp(.65rem, 1.5vw, .8rem);
+    font-weight: 500;
+    letter-spacing: .06em;
+    opacity: .45;
   }
 
-  .footer-copy {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.62rem;
-    color: var(--text-secondary);
-    letter-spacing: 0.06em;
+  /* accent colors per site */
+  .c-purple { color: #a78bfa; }
+  .c-purple2 { color: #818cf8; }
+  .c-green  { color: #4ade80; }
+  .c-red    { color: #f87171; }
+  .c-muted  { color: #555; }
+
+  /* CARD BODY */
+  .card-body {
+    padding: 12px 4px 14px;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f0f0f0;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card-sub {
+    font-size: 13px;
+    color: #666;
+    font-weight: 400;
   }
 
-  .footer-count {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.62rem;
-    color: var(--text-dim);
-    letter-spacing: 0.06em;
-  }
-
-  @media (max-width: 560px) {
-    .entry {
-      grid-template-columns: 2.5rem 1fr auto;
-      gap: 0 1rem;
-    }
-    .entry:not(.coming-soon):hover {
-      margin: 0 -1rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-    .tag { display: none; }
+  /* coming soon overlay */
+  .coming-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.1);
+    color: #555;
+    padding: 3px 8px;
+    border-radius: 4px;
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="site-title">nsfws.link</div>
-  <div class="site-meta">All properties &mdash; 5 sites</div>
-</header>
+<nav>
+  <div class="nav-logo">nsfws.link</div>
+  <div class="nav-dot"></div>
+  <div class="nav-count">5 properties</div>
+</nav>
 
-<main>
-  <div class="dir-label">Directory</div>
+<div class="grid">
 
-  <div class="entries">
-
-    <a class="entry" href="https://monkeygod.fun" target="_blank" rel="noopener">
-      <div class="entry-num">01</div>
-      <div class="entry-body">
-        <div class="entry-domain">monkeygod.fun</div>
-        <div class="entry-desc">Exclusive Telegram membership. Three tiers, instant access.</div>
-      </div>
-      <div class="entry-right">
-        <span class="tag live">Live</span>
-        <span class="entry-arrow">→</span>
-      </div>
-    </a>
-
-    <a class="entry" href="https://monkeygod.us" target="_blank" rel="noopener">
-      <div class="entry-num">02</div>
-      <div class="entry-body">
-        <div class="entry-domain">monkeygod.us</div>
-        <div class="entry-desc">US mirror. Same content, same tiers.</div>
-      </div>
-      <div class="entry-right">
-        <span class="tag live">Live</span>
-        <span class="entry-arrow">→</span>
-      </div>
-    </a>
-
-    <a class="entry" href="https://jabigod.xyz" target="_blank" rel="noopener">
-      <div class="entry-num">03</div>
-      <div class="entry-body">
-        <div class="entry-domain">jabigod.xyz</div>
-        <div class="entry-desc">Premium drops. Exclusive content, private Telegram.</div>
-      </div>
-      <div class="entry-right">
-        <span class="tag live">Live</span>
-        <span class="entry-arrow">→</span>
-      </div>
-    </a>
-
-    <a class="entry" href="https://latinagod.xyz" target="_blank" rel="noopener">
-      <div class="entry-num">04</div>
-      <div class="entry-body">
-        <div class="entry-domain">latinagod.xyz</div>
-        <div class="entry-desc">Latina exclusive. Basic, Exclusive, and Premium tiers.</div>
-      </div>
-      <div class="entry-right">
-        <span class="tag live">Live</span>
-        <span class="entry-arrow">→</span>
-      </div>
-    </a>
-
-    <div class="entry coming-soon">
-      <div class="entry-num">05</div>
-      <div class="entry-body">
-        <div class="entry-domain">blondebaddies.xyz</div>
-        <div class="entry-desc">New property. In development.</div>
-      </div>
-      <div class="entry-right">
-        <span class="tag">Soon</span>
-        <span class="entry-arrow">—</span>
+  <!-- monkeygod.fun -->
+  <a class="card" href="https://monkeygod.fun" target="_blank" rel="noopener">
+    <div class="thumb thumb-mg-fun">
+      <div class="thumb-brand">
+        <div class="thumb-brand-name c-purple">MONKEYGOD</div>
+        <div class="thumb-brand-domain">.fun</div>
       </div>
     </div>
+    <div class="card-body">
+      <div class="card-title">MonkeyGod</div>
+      <div class="card-sub">monkeygod.fun</div>
+    </div>
+  </a>
 
+  <!-- monkeygod.us -->
+  <a class="card" href="https://monkeygod.us" target="_blank" rel="noopener">
+    <div class="thumb thumb-mg-us">
+      <div class="thumb-brand">
+        <div class="thumb-brand-name c-purple2">MONKEYGOD</div>
+        <div class="thumb-brand-domain">.us</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-title">MonkeyGod US</div>
+      <div class="card-sub">monkeygod.us</div>
+    </div>
+  </a>
+
+  <!-- jabigod.xyz -->
+  <a class="card" href="https://jabigod.xyz" target="_blank" rel="noopener">
+    <div class="thumb thumb-jabigod">
+      <div class="thumb-brand">
+        <div class="thumb-brand-name c-green">JABIGOD</div>
+        <div class="thumb-brand-domain">.xyz</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-title">JabiGod</div>
+      <div class="card-sub">jabigod.xyz</div>
+    </div>
+  </a>
+
+  <!-- latinagod.xyz -->
+  <a class="card" href="https://latinagod.xyz" target="_blank" rel="noopener">
+    <div class="thumb thumb-latina">
+      <div class="thumb-brand">
+        <div class="thumb-brand-name c-red">LATINAGOD</div>
+        <div class="thumb-brand-domain">.xyz</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-title">LatinaGod</div>
+      <div class="card-sub">latinagod.xyz</div>
+    </div>
+  </a>
+
+  <!-- blondebaddies.xyz — coming soon -->
+  <div class="card coming">
+    <div class="thumb thumb-blonde">
+      <div class="thumb-brand">
+        <div class="thumb-brand-name c-muted">BLONDE BADDIES</div>
+        <div class="thumb-brand-domain">.xyz</div>
+      </div>
+    </div>
+    <div class="coming-badge">Soon</div>
+    <div class="card-body">
+      <div class="card-title" style="color:#444;">BlondeBaddies</div>
+      <div class="card-sub">Coming soon</div>
+    </div>
   </div>
-</main>
 
-<footer>
-  <div class="footer-copy">nsfws.link</div>
-  <div class="footer-count">4 live &mdash; 1 incoming</div>
-</footer>
+</div>
 
 </body>
 </html>
