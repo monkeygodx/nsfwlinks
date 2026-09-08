@@ -220,13 +220,13 @@
   }
   .tile .desc { margin-top: 6px; font-size: 12px; color: var(--sub); letter-spacing: 0.3px; position: relative; z-index: 1; }
 
-  /* per-tile accent colors */
-  .tile.latina { --accent: 255,92,138; }
-  .tile.blonde { --accent: 246,211,101; }
-  .tile.mkgod  { --accent: 246,200,72; }
-  .tile.mkvault{ --accent: 232,185,35; }
-  .tile.jabi   { --accent: 138,180,248; }
-  .tile.ome    { --accent: 120,220,200; }
+  /* every tile hovers gold — one accent, no per-tile colors */
+  .tile.latina,
+  .tile.blonde,
+  .tile.mkgod,
+  .tile.mkvault,
+  .tile.jabi,
+  .tile.ome { --accent: 246,211,101; }
 
   footer {
     margin-top: 52px; position: relative; z-index: 1;
